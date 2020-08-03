@@ -20,8 +20,7 @@ Gem::Specification.new do |gem|
                      "Anton Rieder",
                      "Josh Menden",
                      "Sergey Gnuskov",
-                     "Elijah Miller",
-                    ]
+                     "Elijah Miller"]
   gem.email       = ["joel.meador+archival_record@gmail.com"]
   gem.homepage    = "http://github.com/janxious/archival_record"
 
