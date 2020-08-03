@@ -2,6 +2,6 @@
 # archive_number - string
 class MissingArchivedAt < ActiveRecord::Base
 
-  acts_as_archival
+  archival_record
 
 end

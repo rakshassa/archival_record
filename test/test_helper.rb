@@ -60,6 +60,7 @@ BASE_FIXTURE_CLASSES = %I[
   plain
   poly
   readonly_when_archived
+  deprecated_warning_archival
 ].freeze
 
 RAILS_4_FIXTURE_CLASSES = %I[

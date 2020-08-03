@@ -4,7 +4,7 @@
 # archived_at    - datetime
 class AnotherPolysHolder < ActiveRecord::Base
 
-  acts_as_archival
+  archival_record
 
   has_many :polys, dependent: :destroy, as: :archiveable
 

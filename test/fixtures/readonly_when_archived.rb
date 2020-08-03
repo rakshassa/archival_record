@@ -3,6 +3,6 @@
 # archived_at    - datetime
 class ReadonlyWhenArchived < ActiveRecord::Base
 
-  acts_as_archival readonly_when_archived: true
+  archival_record readonly_when_archived: true
 
 end

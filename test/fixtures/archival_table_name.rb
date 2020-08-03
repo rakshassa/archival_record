@@ -4,6 +4,7 @@
 class ArchivalTableName < ActiveRecord::Base
 
   self.table_name = "legacy"
-  acts_as_archival
+
+  archival_record
 
 end

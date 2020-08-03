@@ -87,4 +87,10 @@ ActiveRecord::Schema.define(version: 1) do
     t.column :archive_number, :string
     t.column :archived_at, :datetime
   end
+
+  create_table :deprecated_warning_archivals, force: true do |t|
+    t.column :archival_id, :integer
+    t.column :archive_number, :string
+    t.column :archived_at, :datetime
+  end
 end

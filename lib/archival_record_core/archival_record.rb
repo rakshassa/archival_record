@@ -33,7 +33,7 @@ module ArchivalRecordCore
 
       # Deprecated: Please use `archival_record` instead
       def acts_as_archival(options = {})
-        warn "[DEPRECATION] `acts_as_archival` is deprecated.  Please use `archival_record` instead."
+        ActiveSupport::Deprecation.warn("`acts_as_archival` is deprecated.  Please use `archival_record` instead.")
         archival_record(options)
       end
 

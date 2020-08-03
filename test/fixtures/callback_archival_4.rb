@@ -1,6 +1,6 @@
 class CallbackArchival4 < ActiveRecord::Base
 
-  acts_as_archival
+  archival_record
 
   attr_accessor :set_this_value,
                 :pass_callback

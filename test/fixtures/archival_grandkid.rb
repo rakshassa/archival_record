@@ -3,7 +3,8 @@
 # archived_at     - datetime
 class ArchivalGrandkid < ActiveRecord::Base
 
-  acts_as_archival
+  archival_record
+
   belongs_to :archival_kid
 
 end
