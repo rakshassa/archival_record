@@ -1,22 +1,15 @@
-# ActsAsArchival
+# ArchivalRecord
 
-[![Build Status](https://travis-ci.org/expectedbehavior/acts_as_archival.svg?branch=master)](https://travis-ci.org/expectedbehavior/acts_as_archival)
-[![Gem Version](https://badge.fury.io/rb/acts_as_archival.svg)](https://badge.fury.io/rb/acts_as_archival)
+[![Build Status](https://travis-ci.org/janxious/archival_record.svg?branch=master)](https://travis-ci.org/janxious/archival_record)
+[![Gem Version](https://badge.fury.io/rb/archival_record.svg)](https://badge.fury.io/rb/archival_record)
 
-Atomically archive object trees in your activerecord models.
+Atomically archive object trees in your ActiveRecord models.
 
-We had the problem that acts_as_paranoid and similar plugins/gems
-always work on a record-by-record basis and made it very difficult to
-restore records atomically (or archive them, for that matter).
+`acts_as_paranoid` and similar plugins/gems work on a record-by-record basis and made it difficult to restore records atomically (or archive them, for that matter).
 
-Because the archive and unarchive methods are in transactions, and
-every archival record involved gets the same archive number upon
-archiving, you can easily restore or remove an entire set of records
-without having to worry about partial deletion or restoration.
+Because the `#archive!` and `#unarchive!` methods are in transactions, and every archival record involved gets the same archive number upon archiving, you can easily restore or remove an entire set of records without having to worry about partial deletion or restoration.
 
-Additionally, other plugins generally screw with how
-`destroy`/`delete` work.  We don't because we actually want to be able
-to destroy records.
+Additionally, other plugins generally change how `destroy`/`delete` work. ArchivalRecord does not, and thus one can destroy records like normal.
 
 ## Maintenance
 
@@ -26,13 +19,13 @@ You might read the commit logs and think "This must be abandonware! This hasn't 
 
 Gemfile:
 
-`gem "acts_as_archival"`
+`gem "archival_record"`
 
 Any models you want to be archival should have the columns `archive_number` (String) and `archived_at` (DateTime).
 
-i.e. `rails g migration AddAAAToPost archive_number archived_at:datetime`
+i.e. `rails g migration AddArchivalRecordToPost archive_number archived_at:datetime`
 
-Any dependent-destroy AAA model associated to an AAA model will be archived with its parent.
+Any dependent-destroy ArchivalRecord model associated to an ArchivalRecord model will be archived with its parent.
 
 _If you're stuck on Rails 4.0x/3x/2x, check out the older tags/branches, which are no longer in active development._
 
@@ -40,12 +33,12 @@ _If you're stuck on Rails 4.0x/3x/2x, check out the older tags/branches, which a
 
 ``` ruby
 class Hole < ActiveRecord::Base
-  acts_as_archival
+  archival_record
   has_many :rats, dependent: :destroy
 end
 
 class Rat < ActiveRecord::Base
-  acts_as_archival
+  archival_record
 end
 ```
 
@@ -119,13 +112,13 @@ Hole.archival?                # => true
 
 ### Options
 
-When defining an AAA model, it is is possible to make it unmodifiable
+When defining an ArchivalRecord model, it is is possible to make it unmodifiable
 when it is archived by passing `readonly_when_archived: true` to the
-`acts_as_archival` call in your model.
+`archival_record` call in your model.
 
 ``` ruby
 class CantTouchThis < ActiveRecord::Base
-  acts_as_archival readonly_when_archived: true
+  archival_record readonly_when_archived: true
 end
 
 record = CantTouchThis.create(foo: "bar")
@@ -137,11 +130,11 @@ record.errors.full_messages.first            # => "Cannot modify an archived rec
 
 ### Callbacks
 
-AAA models have four additional callbacks to do any necessary cleanup or other processing before and after archiving and unarchiving, and can additionally halt the archive callback chain.
+ArchivalRecord models have four additional callbacks to do any necessary cleanup or other processing before and after archiving and unarchiving, and can additionally halt the archive callback chain.
 
 ``` ruby
 class Hole < ActiveRecord::Base
-  acts_as_archival
+  archival_record
 
   # runs before #archive!
   before_archive :some_method_before_archiving
@@ -209,7 +202,8 @@ ActsAsParanoid and PermanentRecords were both inspirations for this:
 * Anton Rieder
 * Josh Menden
 * Sergey Gnuskov
+* Elijah Miller
 
 Thanks!
 
-*Copyright (c) 2009-2017 Expected Behavior, LLC, released under the MIT license*
+[MIT-Licensed](LICENSE)

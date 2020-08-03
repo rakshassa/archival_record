@@ -1,5 +1,5 @@
-module ExpectedBehavior
-  module ActsAsArchival
+module ArchivalRecordCore
+  module ArchivalRecord
     module AssociationOperation
       class Archive < Base
 

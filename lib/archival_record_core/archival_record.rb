@@ -1,5 +1,5 @@
-module ExpectedBehavior
-  module ActsAsArchival
+module ArchivalRecordCore
+  module ArchivalRecord
 
     require "digest/md5"
 
@@ -19,7 +19,7 @@ module ExpectedBehavior
 
     module ActMethods
 
-      def acts_as_archival(options = {})
+      def archival_record(options = {})
         return if included_modules.include?(InstanceMethods)
 
         include InstanceMethods
@@ -29,6 +29,12 @@ module ExpectedBehavior
         setup_scopes
 
         setup_callbacks
+      end
+
+      # Deprecated: Please use `archival_record` instead
+      def acts_as_archival(options = {})
+        ActiveSupport::Deprecation.warn("`acts_as_archival` is deprecated.  Please use `archival_record` instead.")
+        archival_record(options)
       end
 
       private def setup_validations(options)
@@ -66,13 +72,13 @@ module ExpectedBehavior
 
       private def define_callback_dsl_method(callbackable_type, action)
         # rubocop:disable Security/Eval
-        eval <<-end_callbacks
+        eval <<-END_CALLBACKS, binding, __FILE__, __LINE__ + 1
           unless defined?(#{callbackable_type}_#{action})
             def #{callbackable_type}_#{action}(*args, &blk)
               set_callback(:#{action}, :#{callbackable_type}, *args, &blk)
             end
           end
-        end_callbacks
+        END_CALLBACKS
         # rubocop:enable Security/Eval
       end
 
@@ -134,12 +140,14 @@ module ExpectedBehavior
 
       private def execute_archival_action(action)
         self.class.transaction do
+          # rubocop: disable Style/RescueStandardError
           begin
             success = run_callbacks(action) { yield }
             return !!success
           rescue => e
             handle_archival_action_exception(e)
           end
+          # rubocop: enable Style/RescueStandardError
         end
         false
       end

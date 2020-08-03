@@ -4,7 +4,8 @@
 # archived_at      - datetime
 class Poly < ActiveRecord::Base
 
-  acts_as_archival
+  archival_record
+
   belongs_to :archiveable, polymorphic: true
 
 end

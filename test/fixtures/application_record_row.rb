@@ -2,7 +2,7 @@
 if defined?(ApplicationRecord)
   class ApplicationRecordRow < ApplicationRecord
 
-    acts_as_archival
+    archival_record
 
   end
 end

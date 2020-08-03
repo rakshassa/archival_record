@@ -2,7 +2,7 @@
 if defined?(ApplicationRecord)
   class CallbackArchival5 < ApplicationRecord
 
-    acts_as_archival
+    archival_record
 
     attr_accessor :set_this_value,
                   :pass_callback

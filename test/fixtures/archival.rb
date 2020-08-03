@@ -4,7 +4,7 @@
 # archived_at    - datetime
 class Archival < ActiveRecord::Base
 
-  acts_as_archival
+  archival_record
 
   has_many :archivals,          dependent: :destroy
   has_many :archival_kids,      dependent: :destroy

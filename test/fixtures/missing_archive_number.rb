@@ -2,6 +2,6 @@
 # archived_at    - datetime
 class MissingArchiveNumber < ActiveRecord::Base
 
-  acts_as_archival
+  archival_record
 
 end
