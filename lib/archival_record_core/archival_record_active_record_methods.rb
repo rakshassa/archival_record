@@ -1,5 +1,5 @@
-module ExpectedBehavior
-  module ActsAsArchivalActiveRecordMethods
+module ArchivalRecordCore
+  module ArchivalRecordActiveRecordMethods
 
     def self.included(base)
       base.extend ARClassMethods
@@ -9,7 +9,7 @@ module ExpectedBehavior
     module ARClassMethods
 
       def archival?
-        included_modules.include?(ExpectedBehavior::ActsAsArchival::InstanceMethods)
+        included_modules.include?(ArchivalRecordCore::ArchivalRecord::InstanceMethods)
       end
 
     end

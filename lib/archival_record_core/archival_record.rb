@@ -1,5 +1,5 @@
-module ExpectedBehavior
-  module ActsAsArchival
+module ArchivalRecordCore
+  module ArchivalRecord
 
     require "digest/md5"
 
@@ -19,7 +19,7 @@ module ExpectedBehavior
 
     module ActMethods
 
-      def acts_as_archival(options = {})
+      def archival_record(options = {})
         return if included_modules.include?(InstanceMethods)
 
         include InstanceMethods
@@ -29,6 +29,12 @@ module ExpectedBehavior
         setup_scopes
 
         setup_callbacks
+      end
+
+      # Deprecated: Please use `archival_record` instead
+      def acts_as_archival(options = {})
+        warn "[DEPRECATION] `acts_as_archival` is deprecated.  Please use `archival_record` instead."
+        archival_record(options)
       end
 
       private def setup_validations(options)

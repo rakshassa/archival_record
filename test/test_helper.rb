@@ -6,7 +6,7 @@ require "minitest/pride"
 require "active_record"
 require "database_cleaner"
 
-require "acts_as_archival"
+require "archival_record"
 
 if ActiveSupport::TestCase.respond_to?(:test_order=)
   ActiveSupport::TestCase.test_order = :random
@@ -35,7 +35,7 @@ end
 def sqlite_config
   {
     adapter: "sqlite3",
-    database: "aaa_test.sqlite3",
+    database: "archival_record_test.sqlite3",
     pool: 5,
     timeout: 5000
   }
