@@ -34,7 +34,6 @@ Gem::Specification.new do |gem|
   gem.add_dependency "activerecord", ">= 5.0"
 
   gem.add_development_dependency "appraisal"
-  gem.add_development_dependency "assertions-eb"
   gem.add_development_dependency "database_cleaner"
   gem.add_development_dependency "rake"
   gem.add_development_dependency "rr"

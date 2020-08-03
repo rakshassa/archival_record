@@ -4,7 +4,6 @@ require "minitest/autorun"
 require "minitest/pride"
 
 require "active_record"
-require "assertions"
 require "database_cleaner"
 
 require "acts_as_archival"
