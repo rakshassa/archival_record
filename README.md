@@ -1,6 +1,6 @@
 # ArchivalRecord
 
-[![Build Status](https://travis-ci.org/janxious/archival_record.svg?branch=master)](https://travis-ci.org/janxious/archival_record)
+[![Build Status](https://travis-ci.org/janxious/archival_record.svg?branch=main)](https://travis-ci.org/janxious/archival_record)
 [![Gem Version](https://badge.fury.io/rb/archival_record.svg)](https://badge.fury.io/rb/archival_record)
 
 Atomically archive object trees in your ActiveRecord models.
