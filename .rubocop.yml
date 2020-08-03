@@ -58,6 +58,9 @@ Style/Documentation:
 Style/DoubleNegation:
   Enabled: false
 
+Style/AccessModifierDeclarations:
+  Enabled: false
+
 Style/FrozenStringLiteralComment:
   EnforcedStyle: never
 

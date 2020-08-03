@@ -6,7 +6,7 @@ require "rubocop/rake_task"
 RuboCop::RakeTask.new
 
 desc "Default: run all available test suites."
-task default: [:rubocop, :test]
+task default: %I[rubocop test]
 
 desc "Test the archival_record gem."
 Rake::TestTask.new(:test) do |t|

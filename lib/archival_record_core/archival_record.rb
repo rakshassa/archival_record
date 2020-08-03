@@ -72,13 +72,13 @@ module ArchivalRecordCore
 
       private def define_callback_dsl_method(callbackable_type, action)
         # rubocop:disable Security/Eval
-        eval <<-end_callbacks
+        eval <<-END_CALLBACKS, binding, __FILE__, __LINE__ + 1
           unless defined?(#{callbackable_type}_#{action})
             def #{callbackable_type}_#{action}(*args, &blk)
               set_callback(:#{action}, :#{callbackable_type}, *args, &blk)
             end
           end
-        end_callbacks
+        END_CALLBACKS
         # rubocop:enable Security/Eval
       end
 
@@ -140,12 +140,14 @@ module ArchivalRecordCore
 
       private def execute_archival_action(action)
         self.class.transaction do
+          # rubocop: disable Style/RescueStandardError
           begin
             success = run_callbacks(action) { yield }
             return !!success
           rescue => e
             handle_archival_action_exception(e)
           end
+          # rubocop: enable Style/RescueStandardError
         end
         false
       end
