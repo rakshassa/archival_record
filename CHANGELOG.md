@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 2.0.1 - August 3, 2020
+* Add security policy
+* Update depenedent gems: archival_record (:D oops) and rubocop, and dependencies
 
 ## 2.0.0 – August 3, 2020
 
