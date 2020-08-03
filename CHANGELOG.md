@@ -1,10 +1,17 @@
 # CHANGELOG
 
-## 2.0.0 – (UNRELEASED)
+
+## 2.0.0 – August 3, 2020
 
 * **BREAKING CHANGE** Drop support for Rails 4.2
 * **BREAKING CHANGE** Removed deprecated methods
 * Fix Rails 6 deprecation warnings
+* Renamed gem to [ArchivalRecord](https://github.com/janxious/archival_record/)
+* `acts_as_archival` becomes `archival_record` in models with a deprecation warning.
+
+-------
+
+The Changelog below applies to versions of [ActsAsArchival](https://github.com/expectedbehavior/acts_as_archival/).
 
 ## 1.4.0 - July 10, 2019
 * **BREAKING CHANGE** drop support for rails 4.1

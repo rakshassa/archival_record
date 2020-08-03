@@ -1,4 +1,4 @@
-# ActsAsArchival
+# ArchivalRecord
 
 [![Build Status](https://travis-ci.org/janxious/archival_record.svg?branch=master)](https://travis-ci.org/janxious/archival_record)
 [![Gem Version](https://badge.fury.io/rb/archival_record.svg)](https://badge.fury.io/rb/archival_record)
@@ -33,12 +33,12 @@ _If you're stuck on Rails 4.0x/3x/2x, check out the older tags/branches, which a
 
 ``` ruby
 class Hole < ActiveRecord::Base
-  acts_as_archival
+  archival_record
   has_many :rats, dependent: :destroy
 end
 
 class Rat < ActiveRecord::Base
-  acts_as_archival
+  archival_record
 end
 ```
 
@@ -114,11 +114,11 @@ Hole.archival?                # => true
 
 When defining an ArchivalRecord model, it is is possible to make it unmodifiable
 when it is archived by passing `readonly_when_archived: true` to the
-`acts_as_archival` call in your model.
+`archival_record` call in your model.
 
 ``` ruby
 class CantTouchThis < ActiveRecord::Base
-  acts_as_archival readonly_when_archived: true
+  archival_record readonly_when_archived: true
 end
 
 record = CantTouchThis.create(foo: "bar")
@@ -134,7 +134,7 @@ ArchivalRecord models have four additional callbacks to do any necessary cleanup
 
 ``` ruby
 class Hole < ActiveRecord::Base
-  acts_as_archival
+  archival_record
 
   # runs before #archive!
   before_archive :some_method_before_archiving
