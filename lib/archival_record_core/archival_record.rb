@@ -139,17 +139,19 @@ module ArchivalRecordCore
       end
 
       private def execute_archival_action(action)
+        result = false
         self.class.transaction do
           # rubocop: disable Style/RescueStandardError
           begin
             success = run_callbacks(action) { yield }
-            return !!success
+            result = !!success
           rescue => e
             handle_archival_action_exception(e)
           end
           # rubocop: enable Style/RescueStandardError
         end
-        false
+
+        result
       end
 
       private def handle_archival_action_exception(exception)
